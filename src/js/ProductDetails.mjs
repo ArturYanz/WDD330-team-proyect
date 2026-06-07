@@ -45,7 +45,44 @@ function productDetailsTemplate(product) {
         }).format(Number(product.FinalPrice) * 0.85);
     document.querySelector("#p-price").textContent = `${euroPrice}`;
     document.querySelector("#p-color").textContent = product.Colors[0].ColorName;
+    const colorContainer = document.querySelector("#product-colors");
+
+    colorContainer.innerHTML = product.Colors.map(
+        (color) => `
+    <img
+      src="${color.ColorChipImageSrc}"
+      alt="${color.ColorName}"
+      class="color-chip"
+      data-name="${color.ColorName}"
+      data-preview="${color.ColorPreviewImageSrc}"
+    >
+  `
+    ).join("");
+
+    const chips = document.querySelectorAll(".color-chip");
+
+    chips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+
+            document.querySelector("#p-image").src =
+                chip.dataset.preview;
+
+            document.querySelector("#p-color").textContent =
+                chip.dataset.name;
+
+            chips.forEach((c) =>
+                c.classList.remove("selected")
+            );
+
+            chip.classList.add("selected");
+        });
+    });
     document.querySelector("#p-description").innerHTML = product.DescriptionHtmlSimple;
 
     document.querySelector("#add-to-cart").dataset.id = product.Id;
+
+
 }
+
+
+
