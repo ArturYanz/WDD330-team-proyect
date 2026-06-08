@@ -20,7 +20,7 @@
 - `npm run build` to build final files when you are ready to turn in.
 
 ### Static Site
-https://wdd330-team04-3gxc.onrender.com
+https://wdd330-team-proyect.onrender.com
 
 
 ---
